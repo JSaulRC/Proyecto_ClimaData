@@ -13,10 +13,8 @@ CIUDADES_COSTA = {
 }
 
 def procesar_clima_diario():
-    # 1. Cargar la base de datos histórica (Ajustando la ruta si lo subiste dentro de workflows)
-    ruta_csv = ".github/workflows/historico_climadata.csv"
-    if not os.path.exists(ruta_csv):
-        ruta_csv = "historico_climadata.csv" # Intenta en la raíz por si lo mueves después
+    # 1. Cargar la base de datos histórica
+    ruta_csv = "historico_climadata.csv"
     
     try:
         df_historico = pd.read_csv(ruta_csv)
