@@ -79,17 +79,15 @@ def generar_boletin_diario():
     publicar_en_x(tuit_final)
 
 def publicar_en_x(mensaje):
-    try:
-        cliente = tweepy.Client(
-            consumer_key=os.environ.get('X_API_KEY'),
-            consumer_secret=os.environ.get('X_API_SECRET'),
-            access_token=os.environ.get('X_ACCESS_TOKEN'),
-            access_token_secret=os.environ.get('X_ACCESS_SECRET')
-        )
-        cliente.create_tweet(text=mensaje)
-        print("✅ Tuit publicado exitosamente.")
-    except Exception as e:
-        print(f"Error al publicar: {e}")
+    cliente = tweepy.Client(
+        consumer_key=os.environ.get('X_API_KEY'),
+        consumer_secret=os.environ.get('X_API_SECRET'),
+        access_token=os.environ.get('X_ACCESS_TOKEN'),
+        access_token_secret=os.environ.get('X_ACCESS_SECRET')
+    )
+    # Sin try/except silencioso para que GitHub te muestre el error real si Twitter lo rechaza
+    respuesta = cliente.create_tweet(text=mensaje)
+    print(f"✅ Tuit publicado exitosamente. ID: {respuesta.data['id']}")
 
 if __name__ == "__main__":
     generar_boletin_diario()
