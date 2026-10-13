@@ -55,7 +55,7 @@ def generar_boletin_diario():
         except: pass
 
         try:
-            sst_actual = requests.get(url_mar).json()['hourly']['sea_surface_temperature'][0]
+            sst_actual = requests.get(url_mar, timeout=10).json()['hourly']['sea_surface_temperature'][0]
         except: pass
         
         ciudad_format = ciudad.ljust(8)
