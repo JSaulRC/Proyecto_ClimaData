@@ -44,7 +44,7 @@ def generar_boletin_diario():
         alerta = "🟢"
         
         try:
-            datos_c = requests.get(url_clima).json()
+            datos_c = requests.get(url_clima, timeout=10).json()
             temp_max = datos_c['daily']['temperature_2m_max'][0]
             humedad = datos_c['current']['relative_humidity_2m']
             presion = datos_c['current']['surface_pressure']
