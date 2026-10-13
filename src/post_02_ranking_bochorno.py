@@ -19,7 +19,7 @@ def generar_ranking():
     for ciudad, coords in COORDENADAS_CLIMA.items():
         url = f"https://api.open-meteo.com/v1/forecast?latitude={coords['lat']}&longitude={coords['lon']}&daily=apparent_temperature_max,uv_index_max&current=relative_humidity_2m&timezone=America%2FLima"
         try:
-            datos = requests.get(url).json()
+            datos = requests.get(url, timeout=10).json()
             datos_ciudades.append({
                 "ciudad": ciudad,
                 "sensacion": datos['daily']['apparent_temperature_max'][0],
